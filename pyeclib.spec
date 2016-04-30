@@ -4,7 +4,7 @@
 #
 Name     : pyeclib
 Version  : 1.2.0
-Release  : 5
+Release  : 6
 URL      : https://bitbucket.org/kmgreen2/pyeclib/get/v1.2.0.tar.bz2
 Source0  : https://bitbucket.org/kmgreen2/pyeclib/get/v1.2.0.tar.bz2
 Summary  : No detailed summary available
