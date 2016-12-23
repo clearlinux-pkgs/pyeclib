@@ -4,7 +4,7 @@
 #
 Name     : pyeclib
 Version  : 1.2.0
-Release  : 8
+Release  : 9
 URL      : https://bitbucket.org/kmgreen2/pyeclib/get/v1.2.0.tar.bz2
 Source0  : https://bitbucket.org/kmgreen2/pyeclib/get/v1.2.0.tar.bz2
 Summary  : No detailed summary available
@@ -38,13 +38,14 @@ python components for the pyeclib package.
 %setup -q -n kmgreen2-pyeclib-19c99357839b
 
 %build
+export LANG=C
 python2 setup.py build -b py2
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test
+PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test || :
 %install
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
