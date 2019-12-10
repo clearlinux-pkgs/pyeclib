@@ -4,7 +4,7 @@
 #
 Name     : pyeclib
 Version  : 1.6.0
-Release  : 19
+Release  : 20
 URL      : https://files.pythonhosted.org/packages/aa/d6/ca6bba5e66fc7a9810a995b17a3675492da2bec405806d8ac3db18cfd93b/pyeclib-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/aa/d6/ca6bba5e66fc7a9810a995b17a3675492da2bec405806d8ac3db18cfd93b/pyeclib-1.6.0.tar.gz
 Summary  : This library provides a simple Python interface for implementing erasure codes.  To obtain the best possible performance, the underlying erasure code algorithms are written in C.
@@ -17,12 +17,17 @@ BuildRequires : liberasurecode-dev
 BuildRequires : six
 
 %description
-PyEClib
 -------
-This library provides a simple Python interface for implementing erasure codes
-and is known to work with Python v2.6, 2.7 and 3.x. To obtain the best possible
-performance, the library utilizes liberasurecode, which is a C based erasure
-code library.
+        
+        This library provides a simple Python interface for implementing erasure codes
+        and is known to work with Python v2.6, 2.7 and 3.x. To obtain the best possible
+        performance, the library utilizes liberasurecode, which is a C based erasure
+        code library.
+        
+        PyECLib supports a variety of Erasure Coding backends including the standard
+        Reed-Solomon implementations provided by Jerasure [1], liberasurecode [3],
+        Intel's ISA-L [4] and Phazr.IO's libphazr.  It also provides support for a flat
+        XOR-based encoder and decoder (part of liberasurecode) - a class of HD
 
 %package python
 Summary: python components for the pyeclib package.
@@ -44,13 +49,15 @@ python3 components for the pyeclib package.
 
 %prep
 %setup -q -n pyeclib-1.6.0
+cd %{_builddir}/pyeclib-1.6.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1557019198
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1576013221
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -65,7 +72,7 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test || :
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
