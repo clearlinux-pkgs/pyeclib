@@ -4,7 +4,7 @@
 #
 Name     : pyeclib
 Version  : 1.6.0
-Release  : 20
+Release  : 21
 URL      : https://files.pythonhosted.org/packages/aa/d6/ca6bba5e66fc7a9810a995b17a3675492da2bec405806d8ac3db18cfd93b/pyeclib-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/aa/d6/ca6bba5e66fc7a9810a995b17a3675492da2bec405806d8ac3db18cfd93b/pyeclib-1.6.0.tar.gz
 Summary  : This library provides a simple Python interface for implementing erasure codes.  To obtain the best possible performance, the underlying erasure code algorithms are written in C.
